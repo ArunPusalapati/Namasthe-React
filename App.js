@@ -1,15 +1,28 @@
-import React from "react";
-import ReactDOM from "react-dom/client"
+/**
+ * <div id="parent">
+ *   <div id="child">
+ *       <h1>I am h1 tag>/h1>
+ *       <h2> I am h2 tag</h2>
+ *   </div>
+ * <div id="child2">
+ *       <h1>I am h1 tag>/h1>
+ *       <h2> I am h2 tag</h2>
+ *   </div>
+ * 
+ * </div>
+ */
+import ReactDOM from "react-dom/client" ;
 
-const heading=React.createElement("div",{id:"parent"},
-    [React.createElement("div",{id:"child"},
-        React.createElement("h1",{},"this my h1")
-    ),
-    React.createElement("div",{id:"child2"},
-        React.createElement("h1",{},"this is child2 h1")
-    )
-    ]
+const TitleComponent=()=>(
+    <h1 className="title">Welcome to title of page</h1>
 );
-console.log(heading);
-    const root=ReactDOM.createRoot(document.getElementById("root"));
-    root.render(heading);
+const HeadingComponent=()=>(
+    <div id="heading">
+        <TitleComponent />
+        <h2 id="content">Content starts heare</h2>
+    </div>
+);
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<HeadingComponent/>);
