@@ -23,6 +23,7 @@
     padding:5px;
     margin:2px;
     width: 280px;
+    height:350px;
     
     
 }
@@ -34,6 +35,7 @@
 
 .resto-logo{
     width: 100%;
+    height:40%;
 }
 .card-container{
     display: flex;

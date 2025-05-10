@@ -1,20 +1,7 @@
-/**
- *Header
-   - Logo
-   -nav-item
-     -home
-     -about
-     -cart
- *Body
-   - search
-   - restaurant-card
-     - image
-     -name
-     -cuisine
- * footer
- 
- */
+
 import ReactDOM from "react-dom/client" ;
+import Header from "./components/Header"
+import Body from "./components/Body"
 
 const RestoCard=(props)=>{
     const {restoCrad}=props;
@@ -865,43 +852,14 @@ const restoData=[
         }
     }
 ];
-const BodyComponent=()=>{
-    
 
-    return (
-        <div className="Body">
-            <div className="search">
-                <h3>Search</h3>
-            </div>
-            <div className="card-container">
-             {restoData.map((restaurant)=>(<RestoCard key={restaurant.info.id} restoCrad={restaurant}/>))}
-            </div>
-        </div>
 
-    );
-}
-const HeaderComponent=()=>{
-    return (
-        <div className="header">
-            <div className="logo">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS43109tZuNd5BgpGU3QDdiKfuIyUYyN1gF4A&s" />
-            </div>
-            <div className="nav-items">
-                <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    );
-}
 
 const AppLayout=()=>{
     return (
     <div>
-     <HeaderComponent/>
-     <BodyComponent/>
+     <Header/>
+     <Body/>
     </div>
     );
 }
