@@ -11,7 +11,6 @@ const RestoCard=(props)=>{
         costForTwo,
         avgRating
     }=restoCrad?.info;
-    console.log(props);
     return (
         <div className="resto-card">
 
