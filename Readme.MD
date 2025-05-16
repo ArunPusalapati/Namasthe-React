@@ -25,3 +25,6 @@ plan
  useEffect({},[])
  
  */
+
+ /* Add search feature which helps to search the in the list we bind the serach value with state variable*/
+ /* added onChange handler for getting the input value for search*/
