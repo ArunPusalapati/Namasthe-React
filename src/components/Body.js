@@ -14,16 +14,19 @@ const Body=()=>{
         },[]
     )
     const fetchData=async ()=>{
-        const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6126255&lng=77.04108959999999&offset=${cart}&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING");
+        const data=await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json=await data.json();
         setRestoData(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
         setFilteredList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
     }
-
+     
+    const updateData=()=>{
+        console.log("mouse Scrolled");
+    }
     
              
     return resList.length===0 ? <SkimmerUI/> :(
-        <div className="Body">
+        <div className="Body" >
             <div className="filter">
                 <div className="search">
                     <input type="text" value={searchValue} onChange={
@@ -44,8 +47,10 @@ const Body=()=>{
                 }
                 >Top Rated Restaurant</button>
             </div>
-            <div className="card-container">
-             {resList.map((restaurant)=><RestoCard key={restaurant.info.id} restoCrad={restaurant}/>)}
+            <div className="card-container" onWheel={
+            ()=>updateData()
+        }>
+             {resList.map((restaurant)=><RestoCard key={restaurant.info.id} restoCrad={restaurant} />)}
              {/* <RestoCard  restoCrad={restoData}/> */}
             </div>
         </div>

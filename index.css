@@ -13,17 +13,18 @@
     font-size: 24px;
     display:flex;
     list-style-type: none; 
+    ;
 } 
 .nav-items>ul>li{
-   
     padding: 10px;
     
 }
 .resto-card{
     background-color:wheat;
+    overflow:hidden;
     padding:5px;
     margin:2px;
-    width: 280px;
+    width: 220px;
     height:350px;
     
     
@@ -69,5 +70,5 @@
     display:flex;
 }
 .search{
-    margin:5px;
+    margin:15px;
 }
