@@ -28,3 +28,27 @@ plan
 
  /* Add search feature which helps to search the in the list we bind the serach value with state variable*/
  /* added onChange handler for getting the input value for search*/
+
+ /* createBrowserRouter, RouterProvide 
+
+ root.render(<RouterProvide router={appRouter}>)
+ createBrowserRouter([
+  {
+    path:" ",
+    element:  ,
+    errorElement:  ,
+    children:[
+      {
+        path:" ",
+        element: ,
+      }
+    ]
+  }
+ ])
+
+ */
+ /*
+ import {useErrorRoute}
+
+ <Outlet> --> from react-router
+ <Link to=" ">  </Link>  ---> from react-router   
