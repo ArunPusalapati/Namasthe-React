@@ -3,6 +3,7 @@ import RestoCard  from "./RestoCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import SkimmerUI from "./SkimmerUI";
+import { Link } from "react-router";
 const Body=()=>{
     let [resList,setRestoData]=useState([]);
     const [filteredList,setFilteredList]=useState([]);
@@ -50,7 +51,8 @@ const Body=()=>{
             <div className="card-container" onWheel={
             ()=>updateData()
         }>
-             {resList.map((restaurant)=><RestoCard key={restaurant.info.id} restoCrad={restaurant} />)}
+             {resList.map((restaurant)=>
+             <Link to={"/restaurantS/"+ restaurant.info.id} key={restaurant.info.id}> <RestoCard  restoCrad={restaurant} /></Link>)}
              {/* <RestoCard  restoCrad={restoData}/> */}
             </div>
         </div>
