@@ -75,5 +75,16 @@
 .user-card{
     border:1px solid black;
     padding:10px;
-    
+    width:max-content;
+    justify-items: center;
+    margin-left: 2px;
+}
+.user-card:hover{
+    border:0px;
+    cursor: pointer;
+    background-color: maroon;
+}
+.about-container{
+    display:flex;
+    flex-wrap: wrap;
 }

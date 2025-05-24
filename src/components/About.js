@@ -1,13 +1,35 @@
 import User from "./User"
 import UserComponent from "./UserComponent";
-const About=()=>{
-    return (
+import React from "react"
+
+class About extends React.Component{
+    constructor(props)
+    {
+        super(props);
+        
+    }
+    componentDidMount()
+    {
+       
+    }
+    render(){
+        
+     return (
         <div>
-           <h1>About page</h1>
-           <User />
+            <div>
+                <h1> Aboout </h1>
+            </div>
+           <div className="about-container">
+           
+           {/* <User  /> */}
            <UserComponent />
+           <UserComponent />
+           <UserComponent />
+           <UserComponent />
+          </div> 
         </div>
        
     );
+    };
 }
 export default About;
