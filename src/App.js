@@ -5,21 +5,24 @@ import Body from "./components/Body"
 import {createBrowserRouter} from "react-router"
 import About from "./components/About"
 import {RouterProvider} from "react-router"
-import Contact from"./components/Contact"
+import ContactUS from "./components/ContactUS"
 import Error from "./components/Error"
 import {Outlet} from "react-router"
 import RestMenu from "./components/RestMenu"
+import { lazy, Suspense } from "react"
 
 
 const AppLayout=()=>{
     return (
-    <div>
+    <div className=" bg-gray-300">
      <Header/>
      <Outlet/>
     </div>
     );
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const Grocery=lazy(()=>import("./components/Grocery"))
 const appRouter=createBrowserRouter([
     {
       path:"/",
@@ -31,11 +34,16 @@ const appRouter=createBrowserRouter([
         element:<About />
     },{
         path:"/contact",
-        element:<Contact />
+        element:<ContactUS />
     },
     {
         path:"/",
         element:<Body />
+    },
+    {
+        path:"/grocery",
+        element:<Suspense><Grocery/></Suspense>
+
     },
     {
         path:"/restaurants/:resid",

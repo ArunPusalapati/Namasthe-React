@@ -20,7 +20,7 @@ const {resid}=useParams();
 
 
 const fetchMenu= async ()=>{
-    const data=await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.406498&lng=78.47724389999999&restaurantId="+resid +"&catalog_qa=undefined&submitAction=ENTER");
+    const data=await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.406498&lng=78.47724389999999&restaurantId="+resid );
     const json=await data.json();
     console.log(json);
     //  console.log(json?.data?.cards[2].card?.card?.info);
@@ -29,7 +29,7 @@ const fetchMenu= async ()=>{
     console.log(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
     
 }
- 
+   
    if(Restinfo===null )
     return <SkimmerUI/>;
     return (
