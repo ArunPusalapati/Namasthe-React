@@ -1,5 +1,5 @@
 
-import RestoCard  from "./RestoCard";
+import RestoCard ,{isOpen} from "./RestoCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import SkimmerUI from "./SkimmerUI";
@@ -10,7 +10,7 @@ const Body=()=>{
     const [filteredList,setFilteredList]=useState([]);
     const [searchValue,setSearchValue]=useState("");
 
-  
+    const RestoCardIsOpen=isOpen(RestoCard);
 
     useEffect(
         ()=>{
@@ -22,6 +22,7 @@ const Body=()=>{
         const json=await data.json();
         setRestoData(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
         setFilteredList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+        console.log(resList);
     }
     const status=useOnlineStatus();
     if(status===false)
@@ -30,9 +31,9 @@ const Body=()=>{
              
     return resList.length===0 ? <SkimmerUI/> :(
         <div className="Body" >
-            <div className="flex m-4">
+            <div className="flex mt-5 ml-30">
                 <div >
-                    <input className="border" type="text" value={searchValue} onChange={
+                    <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500   ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="search..." type="text" value={searchValue} onChange={
                         (e)=>setSearchValue(e.target.value)
                     }>
                     </input>
@@ -53,9 +54,11 @@ const Body=()=>{
                 </div>
             </div >
             <div className="mx-auto">
-            <div className="flex flex-wrap ">
+            <div className="flex flex-wrap justify-center">
              {resList.map((restaurant)=>
-             <Link to={"/restaurantS/"+ restaurant.info.id} key={restaurant.info.id}> <RestoCard  restoCrad={restaurant} /></Link>)}
+             <Link to={"/restaurantS/"+ restaurant.info.id} key={restaurant.info.id}> 
+             {restaurant.info.isOpen?<RestoCardIsOpen restoCrad={restaurant} />:<RestoCard  restoCrad={restaurant} />}
+             </Link>)}
              {/* <RestoCard  restoCrad={restoData}/> */}
             </div>
             </div>
