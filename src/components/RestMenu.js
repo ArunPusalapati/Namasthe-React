@@ -3,46 +3,23 @@ import {useEffect,useState} from "react";
 import SkimmerUI from "./SkimmerUI";
 import { useParams } from "react-router";
 // import { REST_URL } from "../utils/constants";
-
+import RestaurantCategory from "./RestaurantCategory";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 const RestMenu=()=>{
-const [Restinfo,setRestinfo]=useState(null);
-const [restaurantMenu,setRestaurantMenu]=useState([]);
 
-
-const {resid}=useParams();
-
-
-    useEffect(
-        ()=>{
-        fetchMenu();
-    }
-    ,[])
-
-
-const fetchMenu= async ()=>{
-    const data=await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.406498&lng=78.47724389999999&restaurantId="+resid );
-    const json=await data.json();
-    console.log(json);
-    //  console.log(json?.data?.cards[2].card?.card?.info);
-    setRestinfo(json?.data?.cards[2].card?.card?.info);
-    setRestaurantMenu(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards)
-    console.log(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
-    
-}
-   
-   if(Restinfo===null )
+const resid=useParams();
+const restInfo=useRestaurantMenu(resid)
+console.log(resid)
+console.log(restInfo)
+   if(restInfo===null )
     return <SkimmerUI/>;
+   const categories={}
     return (
-        <div className="Menu">
-           <h1>{Restinfo.name}</h1>
-           <h1>{Restinfo.areaName}</h1>
-           <h2>{Restinfo.costForTwoMessage}</h2>
-           <h2>{Restinfo.cuisines.join(",")}</h2>
-            <h4>Menu:</h4>
-           <ul >
-           {restaurantMenu.map((item)=>
-           <li key={item.card.info.id}>{item.card.info.name}</li>)}
-           </ul>
+        <div >
+           {/* <h1 className="font-bold text-2xl text-center m-2">{restInfo.name}</h1>
+           <p className="text-center font-blold">{restInfo.areaName}</p> */}
+           {/* ctaegories*/}
+           {/* {categories.map((category)=><RestaurantCategory key={category.card.card.categoryId} category={category}/>)} */}
         </div>
     );
 }
