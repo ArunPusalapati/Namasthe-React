@@ -7,19 +7,35 @@ import RestaurantCategory from "./RestaurantCategory";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 const RestMenu=()=>{
 
-const resid=useParams();
+const {resid}=useParams();
 const restInfo=useRestaurantMenu(resid)
-console.log(resid)
-console.log(restInfo)
+// console.log(restInfo)
    if(restInfo===null )
     return <SkimmerUI/>;
-   const categories={}
+   const categories=restInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=>
+    c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+   )
+   const {name,city,costForTwoMessage,cuisines}=restInfo?.cards[2]?.card?.card?.info;
     return (
         <div >
-           {/* <h1 className="font-bold text-2xl text-center m-2">{restInfo.name}</h1>
-           <p className="text-center font-blold">{restInfo.areaName}</p> */}
+            <div className="mb-4 ">
+                <div>
+                    <h1 className="font-bold text-2xl text-center m-2">{name}</h1>
+                </div>
+           <div className="border-6 border-gray-800 rounded-2xl shadow-2xl animate-pulse font-serif w-190 m-auto">
+            <p className="text-center font-blold">{city}</p> 
+           <p className="text-center font-blold">{costForTwoMessage}</p> 
+            <p className="text-center font-blold">{cuisines.join(",")}</p> 
+           </div>
+           
+            </div>
            {/* ctaegories*/}
-           {/* {categories.map((category)=><RestaurantCategory key={category.card.card.categoryId} category={category}/>)} */}
+            {categories.map((category)=>
+            <div className=" " key={category.card.card.categoryId} >
+            <RestaurantCategory category={category} />
+            </div>
+            )}
+
         </div>
     );
 }

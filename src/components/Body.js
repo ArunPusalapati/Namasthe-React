@@ -22,7 +22,7 @@ const Body=()=>{
         const json=await data.json();
         setRestoData(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
         setFilteredList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
-        console.log(resList);
+       
     }
     const status=useOnlineStatus();
     if(status===false)

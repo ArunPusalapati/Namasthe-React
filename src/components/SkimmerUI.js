@@ -1,8 +1,8 @@
 const SkimmerUI=()=>
 {
     return (
-       <div className="skim-container">
-        <div className="skim-card-container">
+       <div className="skim-container animate-pulse">
+        <div className="skim-card-container ">
 
         </div>
         <div className="skim-card-container">
