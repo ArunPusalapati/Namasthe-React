@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import RestaurantCategory from "./RestaurantCategory";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 const RestMenu=()=>{
-
+const [showIndex,setShowIndex]=useState(null);
 const {resid}=useParams();
 const restInfo=useRestaurantMenu(resid)
 // console.log(restInfo)
@@ -17,7 +17,7 @@ const restInfo=useRestaurantMenu(resid)
    )
    const {name,city,costForTwoMessage,cuisines}=restInfo?.cards[2]?.card?.card?.info;
     return (
-        <div >
+        <div  className="bg-white">
             <div className="mb-4 ">
                 <div>
                     <h1 className="font-bold text-2xl text-center m-2">{name}</h1>
@@ -30,9 +30,12 @@ const restInfo=useRestaurantMenu(resid)
            
             </div>
            {/* ctaegories*/}
-            {categories.map((category)=>
+            {categories.map((category,index)=>
             <div className=" " key={category.card.card.categoryId} >
-            <RestaurantCategory category={category} />
+            <RestaurantCategory 
+            showIndex={index===showIndex?true:false} 
+            setShowIndex={()=>setShowIndex(index)}
+            category={category} />
             </div>
             )}
 
