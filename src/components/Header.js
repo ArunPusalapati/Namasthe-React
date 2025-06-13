@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 import { CDN_URL } from "../utils/constants";
 import {Link} from "react-router"
 import useOnlineStatus from "../utils/useOnlineStatus";
 const Header=()=>{
-
+    const {loggedInUser}=useContext(UserContext)
     let [bntName,setBntName]=useState("login");
     const online=useOnlineStatus();
 
@@ -27,6 +29,7 @@ const Header=()=>{
                             setBntName("logout"):setBntName("login");
                         }
                     }>{bntName}</button>
+                    <li className="px-6 text-white rounded-lg">{loggedInUser}</li>
                 </ul>
             </div>
             </div>

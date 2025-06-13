@@ -1,14 +1,19 @@
 
 import RestoCard ,{isOpen} from "./RestoCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import SkimmerUI from "./SkimmerUI";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus"
+import UserContext from "../utils/UserContext";
 const Body=()=>{
+    
+   
     let [resList,setRestoData]=useState([]);
     const [filteredList,setFilteredList]=useState([]);
     const [searchValue,setSearchValue]=useState("");
+    const{setUserName,loggedInUser}=useContext(UserContext)
+
 
     const RestoCardIsOpen=isOpen(RestoCard);
 
@@ -26,11 +31,9 @@ const Body=()=>{
     }
     const status=useOnlineStatus();
     if(status===false)
-        return <h1> You are Offline try to reconnect</h1>
-    
-             
+        return <h1> You are Offline try to reconnect</h1>     
     return resList.length===0 ? <SkimmerUI/> :(
-        <div >
+        <div  >
             <div className="flex mt-5 ml-30">
                 <div >
                     <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500   ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="search..." type="text" value={searchValue} onChange={
@@ -51,6 +54,10 @@ const Body=()=>{
                 }
                 }
                 >Top Rated Restaurant</button>
+                </div>
+                <div>
+                    <input className=" ml-1 p-2 rounded-lg bg-white hover:border" type="text" value={loggedInUser} onChange={(e)=>setUserName(e.target.value)}>
+                    </input>
                 </div>
             </div >
             <div className="mx-auto">
