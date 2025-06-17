@@ -11,7 +11,9 @@ import {Outlet} from "react-router"
 import RestMenu from "./components/RestMenu"
 import { lazy, Suspense ,useEffect,useState} from "react"
 import UserContext from "./utils/UserContext"
-
+import Cart from "./components/Cart"
+import { Provider } from "react-redux"
+import appStore from "./utils/appStore"
 
 const AppLayout=()=>{
     const [userName,setUserName]=useState()
@@ -23,12 +25,14 @@ const AppLayout=()=>{
         setUserName(data.name)
     },[])
     return (
+        <Provider store={appStore}>
         <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
     <div className=" bg-gray-300">
      <Header/>
      <Outlet/>
     </div>
     </UserContext.Provider>
+    </Provider>
     );
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -59,6 +63,9 @@ const appRouter=createBrowserRouter([
     {
         path:"/restaurants/:resid",
         element:<RestMenu />
+    },{
+        path:"/cart",
+        element:<Cart/>
     }
 
       ]

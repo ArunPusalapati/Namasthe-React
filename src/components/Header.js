@@ -4,11 +4,14 @@ import UserContext from "../utils/UserContext";
 import { CDN_URL } from "../utils/constants";
 import {Link} from "react-router"
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
+import { createSlice } from "@reduxjs/toolkit";
 const Header=()=>{
     const {loggedInUser}=useContext(UserContext)
     let [bntName,setBntName]=useState("login");
     const online=useOnlineStatus();
-
+    const cart=useSelector((store)=>store.cart.items)
+   console.log(cart)
     return (
         <div className="flex justify-between bg-amber-300 shadow-black h-35">
             <div className="p-4  w-30 h-30">
@@ -22,7 +25,7 @@ const Header=()=>{
                     <li className="px-6 text-white hover:bg-black | rounded-lg"><Link to="/about">About us</Link></li>
                     <li className="px-6 text-white hover:bg-black | rounded-lg"><Link to="/contact">Contact us</Link></li>
                     <li className="px-6 text-white hover:bg-black | rounded-lg"><Link to="/grocery">Grocery</Link></li>
-                    <li className="px-6 text-white hover:bg-black | rounded-lg">Cart</li>
+                    <li className="px-6 text-white hover:bg-black | rounded-lg"><Link to="/cart">Cart</Link></li>
                     <button className="px-6 py-2 bg-black text-white rounded-lg" onClick={
                         ()=> {
                             return bntName==="login" ?
